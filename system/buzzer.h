@@ -45,6 +45,10 @@ public:
         beep(1000);
         volume = 255;
     }
+
+    void SayNoWay() {
+        // :V
+    }
 };
 
 #endif

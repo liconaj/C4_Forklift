@@ -24,7 +24,7 @@ public:
         pinMode(pinBackwards, OUTPUT);
     };
 
-    void setVelocity(float velocity) {
+    void SetVelocity(float velocity) {
         uint8_t Dv = maxSpeed - minSpeed;
         float speed = minSpeed + abs(velocity) * Dv;
 

@@ -15,6 +15,8 @@ void IRAM_ATTR timerISR()
 
 namespace Lights
 {
+    enum State {AlwaysOn, AlwaysOff, Blinking};
+    
     void Init() {
         pinMode(PIN_LIGHTS, OUTPUT);
         timer = timerBegin(0, 80, true);
