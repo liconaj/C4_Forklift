@@ -10,7 +10,7 @@ private:
     uint8_t pinForward;
     uint8_t pinBackwards;
 
-    uint8_t minSpeed = 0;
+    uint8_t minSpeed = 10;
     uint8_t maxSpeed;
 
 public:
@@ -24,9 +24,14 @@ public:
         pinMode(pinBackwards, OUTPUT);
     };
 
+    void SetMaxSpeed(uint8_t maxSpeed = 255) {
+        Motor::maxSpeed = maxSpeed;
+    }
+
     void SetVelocity(float velocity) {
         uint8_t Dv = maxSpeed - minSpeed;
-        float speed = minSpeed + abs(velocity) * Dv;
+        int speed = minSpeed + abs(velocity) * Dv;
+        speed = constrain(speed, 0, 255);
 
         analogWrite(pinSpeed, speed);
         if (velocity > 0) {

@@ -3,6 +3,8 @@
 
 #include <ESP32Servo.h>
 
+#define DEBUG 1
+
 class Lifter : Servo
 {
 public:
@@ -10,7 +12,14 @@ public:
         attach(pin);
     }
 
+    Lifter(uint8_t pin, int min, int max) {
+        attach(pin, min, max);
+    }
+
     void SetElevation(uint8_t elevation) {
+        if (DEBUG) {
+            Serial.println(elevation);
+        }
         write(elevation);
     }
 };

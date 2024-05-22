@@ -6,7 +6,8 @@ class Buzzer
 private:
     uint8_t pin;
     uint8_t volume = 255;
-    void beep(int duration, uint8_t pwm = 255) {
+
+    void beep(int duration, uint8_t pwm = 100) {
         analogWrite(pin, pwm);
         delay(duration * 1.5);
         analogWrite(pin, 0);
@@ -20,7 +21,7 @@ public:
     };
 
     void SayAlert() {
-        beep(100);
+        beep(100, 80);
     }
 
     void SayOK() {
@@ -48,6 +49,22 @@ public:
 
     void SayNoWay() {
         // :V
+    }
+
+    void SayBye() {
+        beep(500, 150);
+        beep(500, 80);
+        beep(1000, 30);
+    }
+
+    void SayReady() {
+        beep(500, 30);
+        beep(500, 80);
+        beep(1000, 150);
+    }
+
+    void Write(uint8_t pwm) {
+        analogWrite(pin, pwm);
     }
 };
 

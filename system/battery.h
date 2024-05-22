@@ -14,7 +14,7 @@ private:
     uint8_t voltageSensor;
 
     int adcValue;
-    float refVoltage = 5;
+    float refVoltage = 3.3;
     float R1 = 30000.0;
     float R2 = 7500.0;
     float adcVoltage;    
@@ -23,7 +23,7 @@ private:
     void updateVoltage() {
         adcValue = analogRead(voltageSensor);
         // voltage at ADC input
-        adcVoltage = (adcValue * refVoltage) / 1024.0;
+        adcVoltage = (adcValue * refVoltage) / 4096.0;
         // voltage at divider input
         voltage = adcVoltage / (R2 / (R1 + R2));
     };
@@ -51,6 +51,11 @@ public:
         
         return level;
     };
+
+    float GetVoltage() {
+        updateVoltage();
+        return voltage;
+    }
 };
 
 #endif
